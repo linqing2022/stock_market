@@ -22,5 +22,5 @@ def main(base_path):
 
 
 if __name__ == '__main__':
-    base_path = 'F:\stock'
+    base_path = 'd:\data'
     main(base_path)

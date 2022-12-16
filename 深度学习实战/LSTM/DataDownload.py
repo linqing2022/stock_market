@@ -8,7 +8,7 @@ import datetime
 获取历史数据
 """
 
-mytoken = 'your ts token'
+mytoken = 'fc5ee2aabec9f7148bcdebac4049b1791777700c0b060a34d0ade298'
 ts.set_token(mytoken)
 pro = ts.pro_api()
 
@@ -100,8 +100,8 @@ def get_daily_basic(save_path, startdate, enddate, update=False):
     if not os.path.exists(os.path.join(save_path, save_path2)):
         os.mkdir(os.path.join(save_path, save_path2))
     # 因为穷没开通创业板和科创板权限，这里只考虑主板和中心板
-    pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
-    pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
+    # pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
+    # pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
     print('获得上市股票总数：', len(pool)-1)
     jj = 0
     for i in pool.ts_code:
@@ -160,7 +160,7 @@ def getLimitData(save_path, startdate, enddate):
                            fields='ts_code,symbol,name,area,industry,fullname,list_date, market,exchange,is_hs')
 
     # 因为穷没开通创业板和科创板权限，这里只考虑主板和中心板
-    pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
+    # pool = pool[pool['market'].isin(['主板', '中小板'])].reset_index()
 
     if not os.path.exists(os.path.join(save_path, 'LimitPrice')):
         os.mkdir(os.path.join(save_path, 'LimitPrice'))
@@ -177,7 +177,7 @@ def getLimitData(save_path, startdate, enddate):
         #     continue
         # if os.path.exists(path):
         #     continue
-        time.sleep(0.3)
+        # time.sleep(0.3)
         df = pro.stk_limit(ts_code=i, start_date=startdate, end_date=enddate)
         df = df.sort_values('trade_date', ascending=True)
         df.to_csv(path, index=False)
@@ -221,22 +221,22 @@ if __name__ == '__main__':
         # 设置起始日期
         # st = '20200721'
         # et = '20200721'
-        save_path = 'F:\stock'
+        save_path = 'd:\data'
         if not os.path.exists(save_path):
             os.mkdir(save_path)
         getNoramlData(save_path, st, et, True, update=update)
         getNoramlData(save_path, st, et, False, update=update)
         # # getLimitData(save_path, st, et)
-        st = '20140101'
+        st = '19900101'
         # et = et
         getIndexData(save_path, st, et)
 
     else:
         # 设置起始日期
         today = datetime.datetime.now().strftime('%Y-%m-%d').replace('-', '')
-        st = '20140101'
+        st = '19900101'
         et = today
-        save_path = 'F:\stock'
+        save_path = 'd:\data'
 
         if not os.path.exists(save_path):
             os.mkdir(save_path)

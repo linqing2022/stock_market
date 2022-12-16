@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # enddate = int(sys.argv[2])
     name = 'all'
     enddate = 20200809
-    base_path = 'F:\stock'
+    base_path = 'd:\data'
     if name == 'all':
         save_path1 = 'feature_stock1.csv'
         startdate = 20140101
